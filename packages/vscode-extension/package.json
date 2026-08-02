@@ -1,0 +1,125 @@
+{
+  "name": "ai-context-vscode",
+  "displayName": "AI Context",
+  "description": "Gera e mantém o contexto do projeto (.ai-context) para agentes de IA entenderem seu código sem ler centenas de arquivos.",
+  "version": "0.0.1",
+  "publisher": "ai-context",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SEU_USUARIO/ai-context.git",
+    "directory": "packages/vscode-extension"
+  },
+  "keywords": ["ai", "context", "llm", "copilot", "developer-tools"],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other", "Machine Learning"],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "workspaceContains:.ai-context"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-context.init",
+        "title": "AI Context: Initialize Project"
+      },
+      {
+        "command": "ai-context.scan",
+        "title": "AI Context: Scan Project"
+      },
+      {
+        "command": "ai-context.update",
+        "title": "AI Context: Update Context"
+      },
+      {
+        "command": "ai-context.clean",
+        "title": "AI Context: Clean Cache"
+      },
+      {
+        "command": "ai-context.doctor",
+        "title": "AI Context: Doctor"
+      },
+      {
+        "command": "ai-context.openContextFolder",
+        "title": "AI Context: Open Context Folder"
+      },
+      {
+        "command": "ai-context.copyProjectPrompt",
+        "title": "AI Context: Copy Project Prompt"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ai-context",
+          "title": "AI Context",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "ai-context": [
+        {
+          "type": "webview",
+          "id": "aiContext.panel",
+          "name": "Overview"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI Context",
+      "properties": {
+        "aiContext.autoUpdate": {
+          "type": "boolean",
+          "default": false,
+          "description": "Atualiza o .ai-context automaticamente quando arquivos relevantes mudam."
+        },
+        "aiContext.updateOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Roda `ai-context update` sempre que um arquivo relevante é salvo."
+        },
+        "aiContext.ignorePatterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Padrões glob adicionais para ignorar, além do .gitignore do projeto."
+        },
+        "aiContext.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mostra notificações de progresso e resultado das operações do AI Context."
+        },
+        "aiContext.preferredCliPath": {
+          "type": "string",
+          "default": "",
+          "description": "Caminho customizado para o executável da CLI ai-context. Deixe vazio para detecção automática."
+        },
+        "aiContext.autoScanOnOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "Detecta ao abrir o projeto se falta gerar o .ai-context e sugere a criação."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.js --production",
+    "dev": "node esbuild.js --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "execa": "^9.5.1"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.14.15",
+    "@vscode/vsce": "^3.1.1",
+    "esbuild": "^0.23.1",
+    "typescript": "^5.5.4"
+  }
+}

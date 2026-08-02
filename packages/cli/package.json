@@ -1,0 +1,48 @@
+{
+  "name": "@ojefersoncode/ai-context-cli",
+  "version": "0.1.1",
+  "description": "CLI para otimizar contexto para modelos de IA",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ojefersoncode/ai-context.git",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "ai",
+    "context",
+    "llm",
+    "cli",
+    "developer-tools"
+  ],
+  "bin": {
+    "ai-context": "bin/ai-context.js"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fast-glob": "^3.3.2",
+    "ts-morph": "^23.0.0",
+    "chokidar": "^3.6.0",
+    "ignore": "^5.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "tsup": "^8.2.4",
+    "@types/node": "^20.14.15"
+  }
+}
