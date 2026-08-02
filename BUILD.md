@@ -95,7 +95,14 @@ Já inclui o build de produção por trás:
 
 ```bash
 cd packages/vscode-extension
-npx vsce package
+npx vsce package --no-dependencies
+```
+
+Ou então
+
+```bash
+cd packages/vscode-extension
+npm run package
 ```
 
 Gera um arquivo `ai-context-vscode-X.Y.Z.vsix` na pasta — é esse arquivo que se instala com:
